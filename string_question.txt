@@ -1,0 +1,119 @@
+1️⃣ Basic Level
+
+Reverse a string
+Input: "hello" → Output: "olleh"
+Concepts: pointers, loops, swapping characters in place.
+
+
+Check if a string is a palindrome
+Input: "madam" → Output: Yes
+Concepts: two-pointer technique, string traversal.
+
+
+Count vowels, consonants, digits, and spaces
+Input: "Hello 123" → Output: Vowels=2, Consonants=3, Digits=3, Spaces=1
+Concepts: ASCII checks, isalpha(), isdigit(), isspace().
+
+
+Convert string to lowercase / uppercase
+Already discussed. Practice with and without ctype.h.
+
+Remove all spaces from a string
+Input: "I love C" → Output: "IloveC"
+Concepts: pointer manipulation, in-place modification.
+
+
+
+2️⃣ Intermediate Level
+
+
+Count occurrences of a character
+Input: "banana", char='a' → Output: 3
+Concepts: pointer traversal, frequency count.
+
+
+Check if two strings are anagrams
+Input: "listen" & "silent" → Output: Yes
+Concepts: frequency array, character counting.
+
+
+Find first non-repeating character
+Input: "swiss" → Output: 'w'
+Concepts: frequency array, string traversal.
+
+
+Remove duplicate characters
+Input: "programming" → Output: "progamin"
+Concepts: nested loops or frequency array, in-place modification.
+
+
+Find substring (manual implementation of strstr)
+Already discussed, good for pointers and comparison logic.
+
+
+
+3️⃣ Advanced Level
+
+
+Reverse words in a sentence
+Input: "I love C" → Output: "C love I"
+Concepts: pointer manipulation, word boundaries.
+
+
+Check if string is rotation of another
+Input: "abcd", "cdab" → Output: Yes
+Concepts: string concatenation, substring search.
+
+
+Replace all occurrences of a substring
+Input: "I like C. C is fun.", replace "C" with "Python" → Output: "I like Python. Python is fun."
+Concepts: dynamic memory allocation, pointer arithmetic.
+
+
+Count number of words in a string
+Input: "Hello world from C" → Output: 4
+Concepts: spaces, tabs, newlines, pointer traversal.
+
+
+Check if string contains only digits
+Input: "12345" → Yes, "12a45" → No
+Concepts: isdigit(), pointer traversal.
+
+
+Palindrome ignoring spaces and case
+Input: "A man a plan a canal Panama" → Yes
+Concepts: tolower(), skip spaces, two-pointer technique.
+
+
+String compression (like "aaabbc" → "a3b2c1")
+Concepts: string traversal, counting consecutive characters.
+
+
+
+4️⃣ Expert / Interview Level
+
+
+Longest palindromic substring
+Input: "babad" → Output: "bab" or "aba"
+Concepts: expanding around center, dynamic programming.
+
+
+Check if two strings are one edit away
+Concepts: string comparison, insertion/deletion/substitution check.
+
+
+Convert string to integer (atoi) manually
+Input: "1234" → Output: 1234
+Concepts: ASCII to integer conversion, overflow handling.
+
+
+Implement your own strtok
+Input: "Hello,world,C" → Tokens: "Hello", "world", "C"
+Concepts: pointer manipulation, tokenization.
+
+
+Find longest substring without repeating characters
+Input: "abcabcbb" → Output: "abc"
+Concepts: sliding window, hashmap / frequency array.
+
+
