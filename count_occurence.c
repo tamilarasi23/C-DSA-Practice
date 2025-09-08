@@ -2,31 +2,37 @@
 #include<string.h>
 #include<stdio_ext.h>
 
-int count_occurence(char *s, char c) {
+char non_repeated_occurence(char *s) {
 
-	int count = 0;
-	while (*s) {
-		if(*s == c) {
-			count++;
+	int count[256] = {0};
+	char *temp = s;
+	while (*temp) {
+		count[*temp]++;
+		temp++;
+	}
+	while(*s) {
+		if(count[*s]==1) {
+			return *s;
 		}
 		s++;
 	}
-	return count;
-	
+	return '\0';
 
 }
 int main() {
 	char s[20];
-	char c;
 
 	printf("Enter the string\n");
 	scanf("%[^\n]",s);
-	__fpurge(stdin);
-	printf("Enter the character to check\n");
-        scanf("%c",&c);
 	
-	int count = count_occurence(s,c);	
-	printf("The no of %c is %d\n", c, count);
+	char count = non_repeated_occurence(s);	
+	if(count) {
+		printf("The first single letter %c \n", count);
+	}
+	else {
+		printf("No single letter\n");
+	}
+
 	return 0;
 
 }
