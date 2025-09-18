@@ -2,26 +2,18 @@
 #include<string.h>
 
 void string_compression(char *s, char *result) {
-	int asic[256] = {0};
-	int count = 0;
+
 	while(*s) {
-		if(asic[*s]==0) {
-			*result++=*s;
-			if(count!=0) {
-				*result++ = count+'0';
-				count=0;
-			}
-			asic[*s]++;
-			count++;
-		}
-		else {
-			asic[*s]++;
-			count++;
-		}
-		s++;
+		char c = *s;
+		int count = 0;
 
+		while(*s==c) {
+			count++;
+			s++;
+		}
+		*result++=c;
+		result +=sprintf(result,"%d",count);
 	}
-
 	*result='\0';
 
 }
