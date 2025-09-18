@@ -18,7 +18,7 @@ void string_compression(char *s, char *result) {
 
 }
 int main() {
-	char s[] = "aaabbbccc";
+	char s[] = "abbbccc";
 	char result[20];
 	string_compression(s,result);
 	printf("%s\n",result);

@@ -14,10 +14,8 @@ int myAtoi(const char *s) {
 		i++;
 	}
 
-	while(s[i]) {
-		if(s[i]>='0' && s[i]<='9') {
+	while(s[i]>='0' && s[i]<='9') {
 			num = num*10+(s[i]-'0');
-		}
 		if(sign == 1 && num > INT_MAX) return INT_MAX;
 		 if(sign == -1 && num < INT_MIN) return INT_MIN;
 		 i++;
