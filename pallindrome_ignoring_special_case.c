@@ -6,10 +6,12 @@ char *remove_space(char *s) {
 	char *n = s;
 	while(*s) {
 		if(*s != ' ') {
-			*n++ = *s++;
+			*n = *s;
+			s++;
+			n++;
 		}
 		else {
-			*s++;
+			s++;
 		}
 	}
 	*n = '\0';

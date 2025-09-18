@@ -4,25 +4,24 @@
 void foo();
 int main() {
 	//2 d array with 5 rows and 3 columns
-	int a[][3] = {{1,2,3},{4,5,6},{7,8,9},{10,11,12},{13,14,15}};
+	char *a[4] = {"Can","van","ran","tan"};
 	//I am going to assign arr to pointer to an array
 	int r =0;
+	printf("The address os a is :%p\n",&a);
+	printf("The address os a is :%p\n",&a[0][0]);
 	foo(a);
-	for (r=0;r<15;r++) {
-		printf("%d ",(*a)[r]);
+	for (r=0;r<4;r++) {
+		printf("%s ",a[r]);
+		printf("\n");
 	}
-	printf("\n");
 	return 0;
 }
-void foo(int **ptr) {
-	int r, c = 0;
-	
-	for (r=0;r<5;r++) {
-		for(c=0;c<3;c++) {
-			printf("%d ",**ptr);
-			(*ptr)++;
-		}
-		ptr++; // will jump to next arr[1][0]
+void foo(char **ptr) {
+	printf("The address of ptr %p\n",ptr);
+	int r = 0;	
+	for (r=0;r<4;r++) {
+		printf("%s",*ptr);
 		printf("\n");
+		ptr++;
 	}
 }

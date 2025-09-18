@@ -10,8 +10,8 @@ void reverse_string(char *s) {
 		*start = *end;
 		*end = temp;
 
-		*start++;
-		*end--;
+		start++;
+		end--;
 	}
 
 }
