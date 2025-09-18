@@ -1,0 +1,385 @@
+. Linked List Operations
+
+Q3: How to traverse a linked list?
+
+void traverse(Node* head) {
+    Node* temp = head;
+    while(temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+}
+
+
+Explanation: Start from head and move next until NULL.
+
+Q4: How to insert a node at the beginning?
+
+void insertAtHead(Node** head, int data) {
+    Node* newNode = malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+
+Q5: How to insert at the end?
+
+void insertAtTail(Node** head, int data) {
+    Node* newNode = malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    if(*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    Node* temp = *head;
+    while(temp->next != NULL) temp = temp->next;
+    temp->next = newNode;
+}
+
+
+Q6: How to delete a node?
+
+void deleteNode(Node** head, int key) {
+    Node* temp = *head;
+    Node* prev = NULL;
+
+    if(temp != NULL && temp->data == key) {
+        *head = temp->next;
+        free(temp);
+        return;
+    }
+
+    while(temp != NULL && temp->data != key) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if(temp == NULL) return; // Not found
+
+    prev->next = temp->next;
+    free(temp);
+}
+
+3. Advanced Linked List Questions
+
+Q7: Reverse a linked list
+
+Node* reverseList(Node* head) {
+    Node *prev = NULL, *curr = head, *next;
+    while(curr != NULL) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev; // new head
+}
+
+
+Q8: Detect a cycle in a linked list
+Solution: Floyd’s Tortoise and Hare
+
+bool hasCycle(Node *head) {
+    Node *slow = head, *fast = head;
+    while(fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast) return true;
+    }
+    return false;
+}
+
+
+Q9: Find the middle of a linked list
+
+Node* findMiddle(Node* head) {
+    Node *slow = head, *fast = head;
+    while(fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+
+Q10: Merge two sorted linked lists
+
+Node* merge(Node* l1, Node* l2) {
+    if(!l1) return l2;
+    if(!l2) return l1;
+
+    if(l1->data < l2->data) {
+        l1->next = merge(l1->next, l2);
+        return l1;
+    } else {
+        l2->next = merge(l1, l2->next);
+        return l2;
+    }
+}
+
+4. Common Interview Variants
+
+Remove duplicates from a sorted/unsorted linked list.
+
+Rotate linked list by k positions.
+
+Flatten a multilevel linked list.
+
+Copy a linked list with random pointers.
+
+Check if linked list is palindrome.
+
+✅ Tips for Interviews:
+
+Always ask if the list is singly or doubly linked.
+
+Handle NULL and edge cases.
+
+Practice writing both iterative and recursive solutions.
+
+Understand time complexity: traversal O(n), insertion/deletion O(1) if pointer is known.
+
+If you want, I can prepare a compact “Top 20 Linked List Interview Questions with Full Answers in C” sheet ready for quick revision. It will include tricky edge cases too.
+
+Do you want me to make that?
+
+You said:
+Remove duplicates from a sorted list
+ChatGPT said:
+
+Here’s a complete explanation and C implementation for removing duplicates from a sorted linked list.
+
+Problem:
+
+Given a sorted singly linked list, remove all duplicates so that each element appears only once.
+
+Example:
+
+Input:  1 -> 1 -> 2 -> 3 -> 3
+Output: 1 -> 2 -> 3
+
+Approach:
+
+Since the list is sorted, duplicates will always be consecutive.
+
+Traverse the list using a pointer current.
+
+If current->data is equal to current->next->data, remove current->next.
+
+Otherwise, move current forward.
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+C Implementation
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+// Function to remove duplicates from sorted list
+void removeDuplicates(Node* head) {
+    Node* current = head;
+    while(current != NULL && current->next != NULL) {
+        if(current->data == current->next->data) {
+            Node* temp = current->next;
+            current->next = current->next->next;
+            free(temp);  // free memory of duplicate node
+        } else {
+            current = current->next;
+        }
+    }
+}
+
+// Helper function to print list
+void printList(Node* head) {
+    while(head != NULL) {
+        printf("%d -> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
+// Helper function to create a new node
+Node* newNode(int data) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    return node;
+}
+
+int main() {
+    // Creating a sorted list: 1->1->2->3->3
+    Node* head = newNode(1);
+    head->next = newNode(1);
+    head->next->next = newNode(2);
+    head->next->next->next = newNode(3);
+    head->next->next->next->next = newNode(3);
+
+    printf("Original List: ");
+    printList(head);
+
+    removeDuplicates(head);
+
+    printf("After Removing Duplicates: ");
+    printList(head);
+
+    return 0;
+}
+
+
+Output:
+
+Original List: 1 -> 1 -> 2 -> 3 -> 3 -> NULL
+After Removing Duplicates: 1 -> 2 -> 3 -> NULL
+
+
+✅ Key Points for Interview:
+
+Works only on sorted lists.
+
+Memory of duplicates should be freed to avoid leaks.
+
+Iterative approach is preferred for simplicity.
+
+Can also be implemented recursively.
+
+If you want, I can also show the recursive solution which is elegant and often asked in interviews.
+
+Do you want me to show the recursive version too?
+
+You said:
+merge two sorted lnked list without recursion
+ChatGPT said:
+
+Sure! Let’s go step by step for merging two sorted linked lists without recursion.
+
+Problem:
+
+Given two sorted singly linked lists, merge them into a single sorted linked list iteratively.
+
+Example:
+
+List1: 1 -> 3 -> 5
+List2: 2 -> 4 -> 6
+Merged: 1 -> 2 -> 3 -> 4 -> 5 -> 6
+
+Approach (Iterative):
+
+Create a dummy node to simplify handling the head.
+
+Use a current pointer to build the merged list.
+
+Compare the current nodes of both lists:
+
+Append the smaller node to the merged list.
+
+Move the pointer of the list from which node was taken.
+
+After one list is exhausted, append the remaining nodes of the other list.
+
+Return dummy->next as the new head.
+
+Time Complexity: O(n + m)
+Space Complexity: O(1)
+
+C Implementation (Iterative)
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+// Function to merge two sorted linked lists iteratively
+Node* mergeSortedLists(Node* l1, Node* l2) {
+    Node dummy; // dummy node
+    Node* tail = &dummy;
+    dummy.next = NULL;
+
+    while(l1 != NULL && l2 != NULL) {
+        if(l1->data < l2->data) {
+            tail->next = l1;
+            l1 = l1->next;
+        } else {
+            tail->next = l2;
+            l2 = l2->next;
+        }
+        tail = tail->next;
+    }
+
+    // Append remaining nodes
+    if(l1 != NULL) tail->next = l1;
+    if(l2 != NULL) tail->next = l2;
+
+    return dummy.next;
+}
+
+// Helper function to print list
+void printList(Node* head) {
+    while(head != NULL) {
+        printf("%d -> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
+// Helper function to create new node
+Node* newNode(int data) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    return node;
+}
+
+int main() {
+    // Creating first sorted list: 1->3->5
+    Node* l1 = newNode(1);
+    l1->next = newNode(3);
+    l1->next->next = newNode(5);
+
+    // Creating second sorted list: 2->4->6
+    Node* l2 = newNode(2);
+    l2->next = newNode(4);
+    l2->next->next = newNode(6);
+
+    printf("List1: ");
+    printList(l1);
+    printf("List2: ");
+    printList(l2);
+
+    Node* merged = mergeSortedLists(l1, l2);
+
+    printf("Merged List: ");
+    printList(merged);
+
+    return 0;
+}
+
+
+Output:
+
+List1: 1 -> 3 -> 5 -> NULL
+List2: 2 -> 4 -> 6 -> NULL
+Merged List: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> NULL
+
+
+✅ Key Points for Interview:
+
+Dummy node simplifies edge cases (like empty lists).
+
+Works iteratively, no recursion needed.
+
+Time Complexity: O(n + m), Space Complexity: O(1).
+
+Always handle remaining nodes after the main loop.
+
+If you want, I can also give a variation where we merge without using a dummy node, which sometimes impresses interviewers.
+
+Do you want me to show that version too?
